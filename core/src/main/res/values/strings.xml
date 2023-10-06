@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Core</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="anime_title">Anime Title</string>
+</resources>
