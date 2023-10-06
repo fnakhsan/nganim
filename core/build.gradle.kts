@@ -4,7 +4,7 @@ import java.io.FileInputStream
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "1.9.0-1.0.12"
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 apply("../shared_dependencies.gradle")

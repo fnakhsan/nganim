@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val homeViewModel: HomeViewModel by viewModels()
-    private val adapter by lazy { ListAnimeAdapter() }
+//    private val adapter by lazy { ListAnimeAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,6 +91,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showData(data: List<AnimeModel>) {
+        val adapter = ListAnimeAdapter()
         adapter.setOnItemClickCallback(object : ListAnimeAdapter.OnItemClickCallback {
             override fun onItemClicked(data: AnimeModel) {
 //                val toDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailActivity()

@@ -7,7 +7,7 @@ import com.example.core.data.remote.response.DetailAnimeResponse
 import com.example.core.domain.model.AnimeModel
 import com.example.core.utils.DataMapper
 import com.example.core.utils.UiText
-import com.example.nganim.R
+import com.example.core.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

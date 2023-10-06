@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.core.databinding.ItemRowAnimeBinding
 import com.example.core.domain.model.AnimeModel
-import com.example.nganim.databinding.ItemRowAnimeBinding
 
 
 class ListAnimeAdapter : RecyclerView.Adapter<ListAnimeAdapter.ListViewHolder>() {

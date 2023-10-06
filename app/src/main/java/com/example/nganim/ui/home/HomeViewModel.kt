@@ -11,7 +11,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val animeUseCase: AnimeUseCase) : ViewModel() {
 
     fun searchAnime(
-        query: String = "naruto",
+        query: String,
         page: Int?
     ) = animeUseCase.searchAnime(query, page).asLiveData(Dispatchers.IO)
 }

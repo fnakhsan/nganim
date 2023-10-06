@@ -1,7 +1,7 @@
 package com.example.core.di
 
 import com.example.core.data.remote.network.ApiService
-import com.example.nganim.BuildConfig
+import com.example.core.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

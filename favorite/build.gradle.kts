@@ -1,23 +1,18 @@
 plugins {
-    id("com.android.application")
+    id("com.android.dynamic-feature")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 apply("../shared_dependencies.gradle")
 
 android {
-    namespace = "com.example.nganim"
-    compileSdk = 34
+    namespace = "com.example.favorite"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.nganim"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,11 +35,12 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":core"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
-    implementation("com.google.android.play:core:1.10.3")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }
