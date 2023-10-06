@@ -40,7 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    dynamicFeatures += setOf(":favorite")
+    dynamicFeatures += setOf(":fav")
 }
 
 dependencies {

@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Nganim"
 include(":app")
 include(":core")
-include(":favorite")
+include(":fav")

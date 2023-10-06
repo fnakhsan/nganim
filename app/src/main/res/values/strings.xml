@@ -4,4 +4,5 @@
     <string name="fav_nav">Favorite</string>
     <string name="search">Search</string>
     <string name="title_favorite">Favorite</string>
+    <string name="title_fav">Favorite</string>
 </resources>
