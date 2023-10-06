@@ -2,7 +2,7 @@ import java.util.Properties
 import java.io.FileInputStream
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp") version "1.9.0-1.0.12"
     id("kotlin-parcelize")
@@ -10,15 +10,11 @@ plugins {
 apply("../shared_dependencies.gradle")
 
 android {
-    namespace = "com.example.nganim"
+    namespace = "com.example.core"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nganim"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
