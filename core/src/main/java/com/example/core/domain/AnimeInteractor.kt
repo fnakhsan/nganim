@@ -12,7 +12,7 @@ class AnimeInteractor @Inject constructor(private val animeRepository: IAnimeRep
         return animeRepository.searchAnime(query, page)
     }
 
-    override fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel>> {
+    override fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel?>> {
         return animeRepository.getDetailAnime(id)
     }
 

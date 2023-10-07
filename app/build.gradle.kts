@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs")
 }
 apply("../shared_dependencies.gradle")
 
@@ -46,5 +47,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
-    implementation("com.google.android.play:core:1.10.3")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }

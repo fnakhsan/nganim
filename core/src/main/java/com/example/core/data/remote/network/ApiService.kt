@@ -13,7 +13,7 @@ interface ApiService {
         @Query("page") page: Int? = null,
     ): SearchAnimeResponse
 
-    @GET("{id}")
+    @GET("info/{id}")
     suspend fun getDetailAnime(
         @Path("id") id: String
     ): DetailAnimeResponse

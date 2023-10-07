@@ -1,5 +1,6 @@
 package com.example.core.utils
 
+import android.util.Log
 import com.example.core.data.local.DetailAnimeEntity
 import com.example.core.data.remote.response.DetailAnimeResponse
 import com.example.core.data.remote.response.SearchAnimeResponse
@@ -15,7 +16,7 @@ object DataMapper {
                     id = it.id,
                     title = it.title.toString(),
                     image = it.image ?: "https://demofree.sirv.com/nope-not-here.jpg?w=100",
-                    genres = it.genres.toString(),
+                    genres = it.genres?.joinToString(",") ?: "",
                     totalEpisode = it.totalEpisodes ?: 0,
                     releaseDate = it.releaseDate.toString(),
                     description = it.description.toString(),
@@ -45,23 +46,30 @@ object DataMapper {
     }
 
 
-    fun mapEntitiesToDomain(input: DetailAnimeEntity): DetailAnimeModel =
-        input.let {
-            DetailAnimeModel(
-                animeEntity = AnimeModel(
-                    id = it.id,
-                    title = it.title,
-                    image = it.image
-                ),
-                genres = it.genres.split(',').toList().map { genre -> GenreModel(genre) },
-                totalEpisode = it.totalEpisode,
-                releaseDate = it.releaseDate,
-                description = it.description,
-                type = it.type,
-                status = it.status,
-                otherName = it.otherName
-            )
+    fun mapEntitiesToDomain(input: DetailAnimeEntity?): DetailAnimeModel? {
+        if (input != null) {
+            Log.d("data", "satu")
+            return input.let {
+                DetailAnimeModel(
+                    animeEntity = AnimeModel(
+                        id = it.id,
+                        title = it.title,
+                        image = it.image
+                    ),
+                    genres = it.genres.split(',').toList().map { genre -> GenreModel(genre) },
+                    totalEpisode = it.totalEpisode,
+                    releaseDate = it.releaseDate,
+                    description = it.description,
+                    type = it.type,
+                    status = it.status,
+                    otherName = it.otherName
+                )
+            }
+        } else {
+            return null
         }
+    }
+
 
     fun mapDomainToEntity(input: DetailAnimeModel) = DetailAnimeEntity(
         id = input.animeEntity.id,

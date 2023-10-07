@@ -47,7 +47,7 @@ data class DetailAnimeResponse(
 data class EpisodesItem(
 
 	@field:SerializedName("number")
-	val number: Int? = null,
+	val number: Float? = null,
 
 	@field:SerializedName("id")
 	val id: String? = null,

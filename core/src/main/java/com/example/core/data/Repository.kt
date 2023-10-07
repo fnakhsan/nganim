@@ -28,18 +28,21 @@ class Repository @Inject constructor(
         remoteDataSource.searchAnime(query, page)
 
 
-    override fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel>> =
-        object : NetworkBoundResource<DetailAnimeModel, DetailAnimeResponse>() {
-            override fun loadFromDB(): Flow<DetailAnimeModel> {
+    override fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel?>> =
+        object : NetworkBoundResource<DetailAnimeModel?, DetailAnimeResponse>() {
+            override fun loadFromDB(): Flow<DetailAnimeModel?> {
                 return localDataSource.getFavoriteAnime(id).map {
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
 
-            override fun shouldFetch(data: DetailAnimeModel?): Boolean = data == null
+            override fun shouldFetch(data: DetailAnimeModel?): Boolean {
+                return data == null
+            }
 
-            override suspend fun createCall(): Flow<Resource<DetailAnimeResponse>> =
-                remoteDataSource.getDetailAnime(id)
+            override suspend fun createCall(): Flow<Resource<DetailAnimeResponse>> {
+                return remoteDataSource.getDetailAnime(id)
+            }
 
             override suspend fun saveCallResult(data: DetailAnimeResponse) {
                 val anime = DataMapper.mapResponsesToEntities(data)

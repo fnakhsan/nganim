@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface IAnimeRepository {
     fun searchAnime(query: String, page: Int?): Flow<Resource<List<AnimeModel>>>
 
-    fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel>>
+    fun getDetailAnime(id: String): Flow<Resource<DetailAnimeModel?>>
 
     fun getFavListAnime(): Flow<List<AnimeModel>>
 

@@ -1,4 +1,4 @@
-package com.example.favorite.ui
+package com.example.nganim.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -8,6 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(private val animeUseCase: AnimeUseCase) : ViewModel() {
-    fun getFavListAnime() = animeUseCase.getFavListAnime().asLiveData(Dispatchers.IO)
+class DetailViewModel @Inject constructor(private val animeUseCase: AnimeUseCase) : ViewModel() {
+    fun getDetailAnime(id: String) = animeUseCase.getDetailAnime(id).asLiveData(Dispatchers.IO)
 }
