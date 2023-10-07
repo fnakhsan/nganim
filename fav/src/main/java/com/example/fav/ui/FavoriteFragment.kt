@@ -1,15 +1,13 @@
 package com.example.fav.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.model.AnimeModel
 import com.example.core.ui.ListAnimeAdapter
 import com.example.fav.databinding.FragmentFavoriteBinding
@@ -47,9 +45,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("favorite", "onViewCreated: masuk")
         if (activity != null) {
-            Log.d("favorite", "onViewCreated: masuk2")
             showListAnime()
         }
     }
@@ -60,14 +56,8 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showListAnime() {
-        Log.d("favorite", "onViewCreated: masuk3")
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val itemDecoration = DividerItemDecoration(context, layoutManager.orientation)
-        binding.rvAnime.apply {
-            this.layoutManager = layoutManager
-            addItemDecoration(itemDecoration)
-        }
-        Log.d("favorite", "onViewCreated: masuk4")
+        val layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        binding.rvAnime.layoutManager = layoutManager
 
         favoriteViewModel.getFavListAnime().observe(viewLifecycleOwner) {
             showLoading(true)

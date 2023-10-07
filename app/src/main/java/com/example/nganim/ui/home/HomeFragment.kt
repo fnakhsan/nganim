@@ -8,8 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.data.Resource
 import com.example.core.domain.model.AnimeModel
 import com.example.core.ui.ListAnimeAdapter
@@ -46,12 +45,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun showListAnime() {
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val itemDecoration = DividerItemDecoration(context, layoutManager.orientation)
-        binding?.rvAnime?.apply {
-            this.layoutManager = layoutManager
-            addItemDecoration(itemDecoration)
-        }
+        val layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        binding?.rvAnime?.layoutManager = layoutManager
 
         binding?.actionSearch?.apply {
             queryHint = resources.getString(R.string.search)
