@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="label_small" parent="TextAppearance.Material3.LabelMedium">
+    </style>
+</resources>

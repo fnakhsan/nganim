@@ -2,6 +2,7 @@ package com.example.nganim.ui.detail
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +10,11 @@ import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.core.data.Resource
 import com.example.core.domain.model.DetailAnimeModel
+import com.example.nganim.R
 import com.example.nganim.databinding.ActivityDetailBinding
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
@@ -52,12 +55,14 @@ class DetailActivity : AppCompatActivity() {
             tvAlterTitle.text = data.otherName
             tvType.text = data.type
             tvDesc.text = data.description
+            tvDesc.movementMethod = ScrollingMovementMethod()
             Glide.with(this@DetailActivity)
                 .load(data.animeEntity.image)
                 .into(ivAnime)
             data.genres.forEach {
-                binding.cgGenres.addView(createTagChip(this@DetailActivity, it.genre))
+                cgGenres.addView(createTagChip(this@DetailActivity, it.genre))
             }
+
         }
     }
 
@@ -67,7 +72,7 @@ class DetailActivity : AppCompatActivity() {
 //            setChipBackgroundColorResource(R.color.purple_500)
 //            isCloseIconVisible = true
 //            setTextColor(ContextCompat.getColor(context, R.color.white))
-//            setTextAppearance(R.style.ChipTextAppearance)
+            setTextAppearance(R.style.label_small)
         }
 
     }
