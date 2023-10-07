@@ -14,9 +14,9 @@ class LocalDataSource @Inject constructor(private val animeDao: AnimeDao) {
     fun getFavoriteAnime(id: String): Flow<DetailAnimeEntity> =
         animeDao.getFavoriteAnime(SimpleSQLiteQuery("$simpleSQLiteQuery '$id' LIMIT 1"))
 
-    suspend fun upsertFavoriteAnime(animeEntity: DetailAnimeEntity) =
+    fun upsertFavoriteAnime(animeEntity: DetailAnimeEntity) =
         animeDao.upsertFavoriteAnime(animeEntity)
 
-    fun deleteFavoriteAnime(animeEntity: DetailAnimeEntity) =
-        animeDao.deleteFavoriteAnime(animeEntity)
+    fun isFavoriteAnime(id: String): Flow<Boolean> =
+        animeDao.isFavoriteAnime(id)
 }

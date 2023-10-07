@@ -36,4 +36,7 @@ data class DetailAnimeEntity(
 
     @ColumnInfo
     var otherName: String,
+
+    @ColumnInfo(name = "is_favorite")
+    var isFavorite: Boolean = false
 )

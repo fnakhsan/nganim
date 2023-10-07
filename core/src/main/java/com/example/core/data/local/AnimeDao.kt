@@ -1,7 +1,6 @@
 package com.example.core.data.local
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.RawQuery
 import androidx.room.Upsert
@@ -17,8 +16,8 @@ interface AnimeDao {
     fun getFavoriteAnime(query: SupportSQLiteQuery): Flow<DetailAnimeEntity>
 
     @Upsert
-    suspend fun upsertFavoriteAnime(animeEntity: DetailAnimeEntity)
+    fun upsertFavoriteAnime(animeEntity: DetailAnimeEntity)
 
-    @Delete
-    fun deleteFavoriteAnime(animeEntity: DetailAnimeEntity)
+    @Query("SELECT EXISTS(SELECT * FROM anime WHERE anime.id = :id AND anime.is_favorite = 1 )")
+    fun isFavoriteAnime(id: String): Flow<Boolean>
 }

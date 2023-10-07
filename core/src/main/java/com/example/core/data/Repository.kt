@@ -1,5 +1,6 @@
 package com.example.core.data
 
+import android.util.Log
 import com.example.core.data.local.LocalDataSource
 import com.example.core.data.remote.RemoteDataSource
 import com.example.core.data.remote.response.DetailAnimeResponse
@@ -10,7 +11,6 @@ import com.example.core.utils.AppExecutors
 import com.example.core.utils.DataMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.transform
@@ -60,26 +60,23 @@ class Repository @Inject constructor(
         }
     }
 
-    override fun setFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean> = flow {
-        emit(false)
-        try {
-            localDataSource.upsertFavoriteAnime(DataMapper.mapDomainToEntity(detailAnimeModel))
-            emit(true)
-        } catch (e: Exception) {
-            emit(false)
-        }
-    }.flowOn(Dispatchers.IO)
-
-    override fun deleteFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean> = flow {
-        emit(false)
-        try {
-            appExecutors.diskIO().execute {
-                localDataSource.deleteFavoriteAnime(DataMapper.mapDomainToEntity(detailAnimeModel))
+    override fun setFavAnime(detailAnimeModel: DetailAnimeModel) {
+        appExecutors.diskIO()
+            .execute {
+                Log.d("detail", "setFavAnime: ${detailAnimeModel.genres}")
+                Log.d(
+                    "detail",
+                    "setFavAnime: ${DataMapper.mapDomainToEntity(detailAnimeModel).genres}"
+                )
+                localDataSource.upsertFavoriteAnime(
+                    DataMapper.mapDomainToEntity(
+                        detailAnimeModel
+                    )
+                )
             }
-            emit(true)
-        } catch (e: Exception) {
-            emit(false)
-        }
-    }.flowOn(Dispatchers.IO)
+    }
 
+
+    override fun isFavAnime(id: String): Flow<Boolean> =
+        localDataSource.isFavoriteAnime(id).flowOn(Dispatchers.IO)
 }

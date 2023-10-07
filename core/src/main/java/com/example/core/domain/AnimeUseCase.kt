@@ -12,7 +12,7 @@ interface AnimeUseCase {
 
     fun getFavListAnime(): Flow<List<AnimeModel>>
 
-    fun setFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean>
+    fun setFavAnime(detailAnimeModel: DetailAnimeModel)
 
-    fun deleteFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean>
+    fun isFavAnime(id: String): Flow<Boolean>
 }

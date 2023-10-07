@@ -20,11 +20,11 @@ class AnimeInteractor @Inject constructor(private val animeRepository: IAnimeRep
         return animeRepository.getFavListAnime()
     }
 
-    override fun setFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean> {
+    override fun setFavAnime(detailAnimeModel: DetailAnimeModel) {
         return animeRepository.setFavAnime(detailAnimeModel)
     }
 
-    override fun deleteFavAnime(detailAnimeModel: DetailAnimeModel): Flow<Boolean> {
-        return animeRepository.deleteFavAnime(detailAnimeModel)
+    override fun isFavAnime(id: String): Flow<Boolean> {
+        return animeRepository.isFavAnime(id)
     }
 }

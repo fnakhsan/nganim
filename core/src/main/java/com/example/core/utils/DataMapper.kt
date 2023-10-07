@@ -6,7 +6,6 @@ import com.example.core.data.remote.response.DetailAnimeResponse
 import com.example.core.data.remote.response.SearchAnimeResponse
 import com.example.core.domain.model.AnimeModel
 import com.example.core.domain.model.DetailAnimeModel
-import com.example.core.domain.model.GenreModel
 
 object DataMapper {
     fun mapResponsesToEntities(input: DetailAnimeResponse): DetailAnimeEntity? =
@@ -56,7 +55,7 @@ object DataMapper {
                         title = it.title,
                         image = it.image
                     ),
-                    genres = it.genres.split(',').toList().map { genre -> GenreModel(genre) },
+                    genres = it.genres.split(',').toList(),
                     totalEpisode = it.totalEpisode,
                     releaseDate = it.releaseDate,
                     description = it.description,
@@ -71,16 +70,19 @@ object DataMapper {
     }
 
 
-    fun mapDomainToEntity(input: DetailAnimeModel) = DetailAnimeEntity(
-        id = input.animeEntity.id,
-        title = input.animeEntity.title,
-        image = input.animeEntity.image,
-        genres = input.genres.joinToString(","),
-        totalEpisode = input.totalEpisode,
-        releaseDate = input.releaseDate,
-        description = input.description,
-        type = input.type,
-        status = input.status,
-        otherName = input.otherName
-    )
+    fun mapDomainToEntity(input: DetailAnimeModel): DetailAnimeEntity {
+        return DetailAnimeEntity(
+            id = input.animeEntity.id,
+            title = input.animeEntity.title,
+            image = input.animeEntity.image,
+            genres = input.genres.joinToString(","),
+            totalEpisode = input.totalEpisode,
+            releaseDate = input.releaseDate,
+            description = input.description,
+            type = input.type,
+            status = input.status,
+            otherName = input.otherName,
+            isFavorite = input.isFav ?: false
+        )
+    }
 }
