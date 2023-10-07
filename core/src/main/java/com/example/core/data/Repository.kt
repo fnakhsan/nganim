@@ -1,6 +1,5 @@
 package com.example.core.data
 
-import android.util.Log
 import com.example.core.data.local.LocalDataSource
 import com.example.core.data.remote.RemoteDataSource
 import com.example.core.data.remote.response.DetailAnimeResponse
@@ -13,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.transform
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,7 +30,7 @@ class Repository @Inject constructor(
         object : NetworkBoundResource<DetailAnimeModel?, DetailAnimeResponse>() {
             override fun loadFromDB(): Flow<DetailAnimeModel?> {
                 return localDataSource.getFavoriteAnime(id).map {
-                    DataMapper.mapEntitiesToDomain(it)
+                    DataMapper.mapEntitiesToDetailDomain(it)
                 }
             }
 
@@ -53,8 +51,8 @@ class Repository @Inject constructor(
         }.asFlow()
 
     override fun getFavListAnime(): Flow<List<AnimeModel>> {
-        return localDataSource.getListFavoriteAnime().transform {
-            it.forEach { data ->
+        return localDataSource.getListFavoriteAnime().map {
+            it.map { data ->
                 DataMapper.mapEntitiesToDomain(data)
             }
         }
@@ -63,11 +61,6 @@ class Repository @Inject constructor(
     override fun setFavAnime(detailAnimeModel: DetailAnimeModel) {
         appExecutors.diskIO()
             .execute {
-                Log.d("detail", "setFavAnime: ${detailAnimeModel.genres}")
-                Log.d(
-                    "detail",
-                    "setFavAnime: ${DataMapper.mapDomainToEntity(detailAnimeModel).genres}"
-                )
                 localDataSource.upsertFavoriteAnime(
                     DataMapper.mapDomainToEntity(
                         detailAnimeModel

@@ -1,9 +1,11 @@
 package com.example.fav.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,6 +21,7 @@ import javax.inject.Inject
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+
     @Inject
     lateinit var factory: ViewModelFactory
     private val favoriteViewModel: FavoriteViewModel by viewModels { factory }
@@ -44,7 +47,9 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("favorite", "onViewCreated: masuk")
         if (activity != null) {
+            Log.d("favorite", "onViewCreated: masuk2")
             showListAnime()
         }
     }
@@ -55,12 +60,14 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showListAnime() {
+        Log.d("favorite", "onViewCreated: masuk3")
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val itemDecoration = DividerItemDecoration(context, layoutManager.orientation)
         binding.rvAnime.apply {
             this.layoutManager = layoutManager
             addItemDecoration(itemDecoration)
         }
+        Log.d("favorite", "onViewCreated: masuk4")
 
         favoriteViewModel.getFavListAnime().observe(viewLifecycleOwner) {
             showLoading(true)
@@ -73,9 +80,10 @@ class FavoriteFragment : Fragment() {
         val adapter = ListAnimeAdapter()
         adapter.setOnItemClickCallback(object : ListAnimeAdapter.OnItemClickCallback {
             override fun onItemClicked(data: AnimeModel) {
-//                val toDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailActivity()
-//                toDetailFragment.username = data.login
-//                findNavController().navigate(toDetailFragment)
+                val toDetailFragment =
+                    FavoriteFragmentDirections.actionFavoriteFragmentToDetailActivity()
+                toDetailFragment.id = data.id
+                findNavController().navigate(toDetailFragment)
             }
         })
         adapter.differ.submitList(data.toMutableList())

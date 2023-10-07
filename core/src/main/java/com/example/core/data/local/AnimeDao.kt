@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AnimeDao {
-    @Query("SELECT * FROM anime")
+    @Query("SELECT * FROM anime where anime.is_favorite = 1")
     fun getListFavoriteAnime(): Flow<List<DetailAnimeEntity>>
 
     @RawQuery(observedEntities = [DetailAnimeEntity::class])

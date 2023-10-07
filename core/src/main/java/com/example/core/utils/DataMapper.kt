@@ -45,7 +45,7 @@ object DataMapper {
     }
 
 
-    fun mapEntitiesToDomain(input: DetailAnimeEntity?): DetailAnimeModel? {
+    fun mapEntitiesToDetailDomain(input: DetailAnimeEntity?): DetailAnimeModel? {
         if (input != null) {
             Log.d("data", "satu")
             return input.let {
@@ -68,6 +68,12 @@ object DataMapper {
             return null
         }
     }
+
+    fun mapEntitiesToDomain(input: DetailAnimeEntity): AnimeModel = AnimeModel(
+        id = input.id,
+        title = input.title,
+        image = input.image
+    )
 
 
     fun mapDomainToEntity(input: DetailAnimeModel): DetailAnimeEntity {
