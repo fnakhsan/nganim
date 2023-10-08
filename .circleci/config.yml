@@ -8,7 +8,7 @@ jobs:
     executor: android/android
     steps:
       - checkout
-      - circleci/openjdk-install:
+      - circleci/android@0.2.1:
           jdk-version: 17
       - restore_cache:
           key: android-orb-v1-
