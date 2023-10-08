@@ -8,10 +8,6 @@ jobs:
     executor: android/android
     steps:
       - checkout
-      - android/gradle:
-          dependencies:
-            path: ./app
-          task: build
       - restore_cache:
           key: android-orb-v1-
       - run:
