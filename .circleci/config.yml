@@ -1,20 +1,13 @@
 version: 2.1
 
 orbs:
-  android: circleci/android
+  android: circleci/android@0.2.1
 
 jobs:
   build:
     executor: android/android
     steps:
       - checkout
-      - android/gradle:
-          dependencies:
-            path: ./app
-          task: build
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
       - restore_cache:
           key: android-orb-v1-
       - run:
