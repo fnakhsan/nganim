@@ -3,6 +3,9 @@ version: 2.1
 orbs:
   android: circleci/android@2.3.0
 
+commands:
+  java-version: 8
+
 jobs:
   build:
     executor:
