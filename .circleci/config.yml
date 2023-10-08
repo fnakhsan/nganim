@@ -26,10 +26,15 @@ jobs:
                     sudo apt-get update && sudo apt-get install openjdk-${PARAM_JAVA_VER}-jdk
                     sudo update-alternatives --set javac /usr/lib/jvm/java-"${PARAM_JAVA_VER}"-openjdk-amd64/bin/javac
                     sudo update-alternatives --set java /usr/lib/jvm/java-"${PARAM_JAVA_VER}"-openjdk-amd64/bin/java
+                    echo "export JAVA_HOME=/usr/lib/jvm/java-${PARAM_JAVA_VER}-openjdk-amd64" >> ~/.bashrc
+                    echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
                     NEW_JAVA_VER="$( java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1 )"
                     NEW_JAVAC_VER="$( javac -version 2>&1 | head -1 | cut -f 2- -d ' ' | sed '/^1\./s///' | cut -d'.' -f1 )"
                     echo "New Java Version : $NEW_JAVA_VER"
                     echo "New Java Compiler Version : $NEW_JAVAC_VER"
+            environment:
+            PARAM_JAVA_VER: 17
+            name: Change OpenJDK version to 17
           environment:
             PARAM_JAVA_VER: 17
           name: Change OpenJDK version to 17
