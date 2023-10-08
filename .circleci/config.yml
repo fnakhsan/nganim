@@ -1,11 +1,14 @@
 version: 2.1
 
 orbs:
-  android: circleci/android@0.2.1
+  android: circleci/android@2.3.0
 
 jobs:
   build:
-    executor: android/android
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2021.10.1
     steps:
       - checkout
       - restore_cache:
@@ -13,6 +16,23 @@ jobs:
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
+      - run:
+          command: |-
+            #!/bin/bash
+             CURRENT_JAVA_VER="$( java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1 )"
+                    CURRENT_JAVAC_VER="$( javac -version 2>&1 | head -1 | cut -f 2- -d ' ' | sed '/^1\./s///' | cut -d'.' -f1 )"
+                    echo "Current Java Version: $CURRENT_JAVA_VER"
+                    echo "Current Java Compiler Version : $CURRENT_JAVAC_VER"
+                    sudo apt-get update && sudo apt-get install openjdk-${PARAM_JAVA_VER}-jdk
+                    sudo update-alternatives --set javac /usr/lib/jvm/java-"${PARAM_JAVA_VER}"-openjdk-amd64/bin/javac
+                    sudo update-alternatives --set java /usr/lib/jvm/java-"${PARAM_JAVA_VER}"-openjdk-amd64/bin/java
+                    NEW_JAVA_VER="$( java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1 )"
+                    NEW_JAVAC_VER="$( javac -version 2>&1 | head -1 | cut -f 2- -d ' ' | sed '/^1\./s///' | cut -d'.' -f1 )"
+                    echo "New Java Version : $NEW_JAVA_VER"
+                    echo "New Java Compiler Version : $NEW_JAVAC_VER"
+          environment:
+            PARAM_JAVA_VER: 17
+          name: Change OpenJDK version to 17
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
@@ -35,3 +55,8 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: artifact-file
+
+workflows:
+  build:
+    jobs:
+      - build
