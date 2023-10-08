@@ -21,7 +21,7 @@ jobs:
           command: touch local.properties
       - run:
           name: Set config
-          command: echo "BASE_URL=\"https://api.consumet.org/anime/gogoanime/\"" >> local.properties
+          command: echo "BASE_URL = https://api.consumet.org/anime/gogoanime/" >> local.properties
       - run:
           command: |-
             #!/bin/bash
