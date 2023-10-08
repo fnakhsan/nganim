@@ -9,7 +9,7 @@ commands:
       Change default java version from OpenJDK v17.
     parameters:
       java-version:
-        default: 8
+        default: 17
         description: |
           The version of OpenJDK to change to
         type: integer
@@ -22,9 +22,9 @@ commands:
                     echo "Current Java Version: $CURRENT_JAVA_VER"
                     echo "Current Java Compiler Version : $CURRENT_JAVAC_VER"
                     if [ "$CURRENT_JAVA_VER" -ne "${PARAM_JAVA_VER}" ]; then
-                      if [ "${PARAM_JAVA_VER}" -eq 8 ] || [ "${PARAM_JAVA_VER}" -eq 17 ]; then
-                        if [ "${PARAM_JAVA_VER}" -eq 8 ]; then
-                          sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+                      if [ "${PARAM_JAVA_VER}" -eq 17 ] || [ "${PARAM_JAVA_VER}" -eq 17 ]; then
+                        if [ "${PARAM_JAVA_VER}" -eq 17 ]; then
+                          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/jre/bin/java
                         else
                           sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
                         fi
