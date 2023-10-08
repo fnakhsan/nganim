@@ -8,8 +8,6 @@ jobs:
     executor: android/android
     steps:
       - checkout
-      - circleci/android@0.2.1:
-          jdk-version: 17
       - restore_cache:
           key: android-orb-v1-
       - run:
