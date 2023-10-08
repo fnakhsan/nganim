@@ -17,6 +17,12 @@ jobs:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
+          name: Generate local properties
+          command: touch local.properties
+      - run:
+          name: Set config
+          command: echo "BASE_URL=\"https://api.consumet.org/anime/gogoanime/\"" >> local.properties
+      - run:
           command: |-
             #!/bin/bash
              CURRENT_JAVA_VER="$( java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1 )"
