@@ -8,7 +8,7 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../../DevelopmentKits/Gradle" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
