@@ -9,7 +9,7 @@ plugins {
 apply("../shared_dependencies.gradle")
 android {
     namespace = "com.example.fav"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -19,10 +19,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
         }
     }
     compileOptions {
@@ -40,7 +40,4 @@ android {
 dependencies {
     implementation(project(":app"))
     implementation(project(":core"))
-//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-//    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-//    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }
