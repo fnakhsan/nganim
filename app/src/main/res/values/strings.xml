@@ -9,6 +9,4 @@
     <string name="anime_alternative_title">Other</string>
     <string name="anime_type">Type</string>
     <string name="anime_description">Description</string>
-    <string name="anime_genre">Genre</string>
-    <string name="anime_total_episodes">Total episodes</string>
 </resources>
