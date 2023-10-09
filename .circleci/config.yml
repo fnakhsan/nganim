@@ -50,6 +50,15 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
+          name: Extract Proguard files
+          command: ./gradlew extractProguardFiles
+      - store_artifacts:
+          path: app/build/proguardfiles/
+          destination: proguardfiles
+      - run:
+          name: Export Release Consumer Proguard Files
+          command: ./gradlew exportReleaseConsumerProguardFiles
+      - run:
           name: Run Build
           command: ./gradlew build
       - store_artifacts:
