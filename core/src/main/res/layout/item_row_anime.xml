@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:padding="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -28,5 +30,7 @@
         android:layout_marginBottom="8dp"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:shadowColor="@color/text_shadow"
+        android:shadowRadius="6"
         tools:text="@string/anime_title" />
 </FrameLayout>

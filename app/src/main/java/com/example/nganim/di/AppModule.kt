@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class AppModule {
     @Binds
     @Singleton
-    abstract fun provideTourismUseCase(animeInteractor: AnimeInteractor): AnimeUseCase
+    abstract fun provideAnimeUseCase(animeInteractor: AnimeInteractor): AnimeUseCase
 }

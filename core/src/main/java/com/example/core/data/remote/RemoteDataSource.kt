@@ -30,7 +30,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
                     emit(Resource.Empty)
                 }
             } catch (e: Exception) {
-                Log.e("RemoteDataSource", e.toString())
+                Log.e("RemoteDataSource", e.message.toString())
                 if (e.message.isNullOrBlank()) {
                     emit(Resource.Error(UiText.StringResource(R.string.unknown_error)))
                 } else {
