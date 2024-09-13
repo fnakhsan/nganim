@@ -71,6 +71,7 @@ class DetailActivity : AppCompatActivity() {
                     .load(animeEntity.image)
                     .into(ivAnime)
 
+                cgGenres.removeAllViews()
                 genres.forEach {
                     cgGenres.addView(createTagChip(this@DetailActivity, it))
                 }

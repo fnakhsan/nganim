@@ -17,6 +17,7 @@ android {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
 
         val properties = Properties().apply {
             load(FileInputStream(project.rootProject.file("local.properties")))
